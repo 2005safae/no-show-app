@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import pickle
+from joblib import load
 import numpy as np
 
 # ---------------------------
@@ -9,8 +9,7 @@ import numpy as np
 @st.cache_resource
 def load_model():
     try:
-        with open("model.pkl", "rb") as file:
-            model = pickle.load(file)
+        model = load("logistic_model.joblib")
         return model
     except Exception as e:
         st.error(f"Erreur lors du chargement du modèle: {e}")
